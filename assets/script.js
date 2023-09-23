@@ -1,20 +1,7 @@
 /*
-Search a city - presented with 5 day forcast
-5 day forcast needs:
-- Date, 
-- Icon representation of weather conditions
-- Temperature
-- Wind speed
-- Humidity
-City is added to search history
 At the top need the 
-- City name
-- Date, 
+- Date,  
 - Icon representation of weather conditions
-- Temperature
-- Humidity, 
-- Wind speed
-
 */
 const searchFormEl = document.querySelector('#citySearchForm');
 const cityInput = document.querySelector('#city-input');
@@ -43,7 +30,7 @@ event.preventDefault();
     var city = cityInput.value.trim();
     console.log("City being searched:", city);  
 
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
 
     .then(function(response) {
         if (!response.ok) {
