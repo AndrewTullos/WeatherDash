@@ -1,8 +1,4 @@
-/*
-At the top need the 
-- Date,  
-- Icon representation of weather conditions
-*/
+
 const searchFormEl = document.querySelector('#citySearchForm');
 const cityInput = document.querySelector('#city-input');
 const citySelected = document.querySelector('#city-selected');
@@ -11,24 +7,22 @@ const weatherNow = document.querySelector('#weather-now')
 
 const apiKey = '1feffd97de3eba178bd8608881f6c445';
 let cityTitle;
+let city;
 let lat;
 let lon;
 let temp;
 let wind;
 let humidity;
+let setLocal;
 
-// Form gathers city
-//Extrapolate lat and lon
-// Assign values to variable
-// Append to page
 
 // GeoCode Lat and Lon extrapolator
 searchFormEl.addEventListener('submit', function(event) {
 event.preventDefault();
 // Clear form here
 
-    var city = cityInput.value.trim();
-    console.log("City being searched:", city);  
+    city = cityInput.value.trim();
+    // console.log("City being searched:", city);  
 
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
 
@@ -41,13 +35,18 @@ event.preventDefault();
     })
     .then(function(data) {
         if (data) {
-            console.log(data);
+            // console.log(data);
             lat = data[0].lat;
             lon = data[0].lon;
             cityTitle = data[0].name;
             displayCity(data, city);
             getCityWeather(data);
             getFiveDay(data, city);
+            var dataJson = JSON.stringify(data);
+
+            setLocal = localStorage.setItem(city, dataJson);
+            setLocal;
+            setList();
         }
     })
     .catch(function(error) {
@@ -68,7 +67,7 @@ var getCityWeather = function (city) {
                 wind = data.wind.speed;
                 humidity = data.main.humidity;
                 displayWeather(data, city);
-                console.log(data);
+                // console.log(data);
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -83,7 +82,7 @@ var getCityWeather = function (city) {
 function displayCity() {
     weatherNow.innerHTML = '';
 
-    console.log('working')
+    // console.log('working')
     weatherNow.classList.add('card');
     const childDiv = document.createElement('div');
     citySelected.classList.add('card-title');
@@ -97,15 +96,15 @@ function displayCity() {
 }
 
 function displayWeather() {
-    console.log('Working');
+    // console.log('Working');
     const secondChildDiv = document.createElement('div');
     secondChildDiv.classList.add('card-text');
     let mainCityCard = document.getElementById('mainCityCard');
     secondChildDiv.innerHTML = `Temperature (F): ${temp}<br><br>Wind (mph): ${wind}<br><br>Humidity: ${humidity}`;
     mainCityCard.append(secondChildDiv);
+
+
 }
-
-
 
 // // 5 Day Forcast
 var getFiveDay = function (city) {
@@ -121,7 +120,7 @@ var getFiveDay = function (city) {
     })
     .then(function(data) {
         if (data) {
-            console.log('THIS IS 5 DAY', data);
+            // console.log('THIS IS 5 DAY', data);
 
             // Day 1
             var temp1 = data.list[3].main.temp;
@@ -251,3 +250,210 @@ var getFiveDay = function (city) {
         alert('Unable to find the weather');
     });
 }
+
+// Search History & Local Storage
+
+function setList() {
+    var dropDown = document.getElementById('dropdown-menu')
+    var createOption = document.createElement('option');
+    dropDown.append(createOption);
+    createOption.innerHTML = `<option value="${city}" >${city}</option>`
+    // console.log('working list')
+}
+
+function searchCity() {
+    const city = document.getElementById('dropdown-menu').value.trim();
+    console.log('City is here', city)
+    
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
+
+    .then(function(response) {
+        if (!response.ok) {
+            console.error('Something went wrong. Error: ' + response.statusText);
+            return;
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        if (data) {
+            // console.log(data);
+            lat = data[0].lat;
+            lon = data[0].lon;
+            cityTitle = data[0].name;
+            displayCity(data, city);
+            getCityWeather(data);
+            getFiveDay(data, city);
+        }
+    })
+    .catch(function(error) {
+        alert('Unable to find the weather');
+    });
+}
+
+
+// Hot City's
+var atlanta = document.getElementById('atlanta');
+var austin = document.getElementById('austin');
+var chicago = document.getElementById('chicago');
+var nashville = document.getElementById('nashville');
+var sanAntonio = document.getElementById('san-antonio');
+
+atlanta.addEventListener('click', function (){
+    event.preventDefault();
+    // Clear form here
+    
+        var city = cityInput.value.trim();
+        // console.log("City being searched:", city);  
+    
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=atlanta}&limit=1&appid=${apiKey}`)
+    
+        .then(function(response) {
+            if (!response.ok) {
+                console.error('Something went wrong. Error: ' + response.statusText);
+                return;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data) {
+                // console.log(data);
+                lat = data[0].lat;
+                lon = data[0].lon;
+                cityTitle = data[0].name;
+                displayCity(data, city);
+                getCityWeather(data);
+                getFiveDay(data, city);
+            }
+        })
+        .catch(function(error) {
+            alert('Unable to find the weather');
+        });  
+})
+
+austin.addEventListener('click', function (event){
+    event.preventDefault();
+    // Clear form here
+    
+        var city = cityInput.value.trim();
+        // console.log("City being searched:", city);  
+    
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=austin}&limit=1&appid=${apiKey}`)
+    
+        .then(function(response) {
+            if (!response.ok) {
+                console.error('Something went wrong. Error: ' + response.statusText);
+                return;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data) {
+                // console.log(data);
+                lat = data[0].lat;
+                lon = data[0].lon;
+                cityTitle = data[0].name;
+                displayCity(data, city);
+                getCityWeather(data);
+                getFiveDay(data, city);
+            }
+        })
+        .catch(function(error) {
+            alert('Unable to find the weather');
+        });  
+})
+
+chicago.addEventListener('click', function (event){
+    event.preventDefault();
+    // Clear form here
+    
+        var city = cityInput.value.trim();
+        // console.log("City being searched:", city);  
+    
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=chicago}&limit=1&appid=${apiKey}`)
+    
+        .then(function(response) {
+            if (!response.ok) {
+                console.error('Something went wrong. Error: ' + response.statusText);
+                return;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data) {
+                // console.log(data);
+                lat = data[0].lat;
+                lon = data[0].lon;
+                cityTitle = data[0].name;
+                displayCity(data, city);
+                getCityWeather(data);
+                getFiveDay(data, city);
+            }
+        })
+        .catch(function(error) {
+            alert('Unable to find the weather');
+        });  
+})
+
+nashville.addEventListener('click', function (){
+    event.preventDefault();
+    // Clear form here
+    
+        var city = cityInput.value.trim();
+        // console.log("City being searched:", city);  
+    
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=nashville}&limit=1&appid=${apiKey}`)
+    
+        .then(function(response) {
+            if (!response.ok) {
+                console.error('Something went wrong. Error: ' + response.statusText);
+                return;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data) {
+                // console.log(data);
+                lat = data[0].lat;
+                lon = data[0].lon;
+                cityTitle = data[0].name;
+                displayCity(data, city);
+                getCityWeather(data);
+                getFiveDay(data, city);
+            }
+        })
+        .catch(function(error) {
+            alert('Unable to find the weather');
+        });  
+})
+
+sanAntonio.addEventListener('click', function (event){
+    event.preventDefault();
+    // Clear form here
+    
+        var city = cityInput.value.trim();
+        // console.log("City being searched:", city);  
+    
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=sanantonio}&limit=1&appid=${apiKey}`)
+    
+        .then(function(response) {
+            if (!response.ok) {
+                console.error('Something went wrong. Error: ' + response.statusText);
+                return;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data) {
+                // console.log(data);
+                lat = data[0].lat;
+                lon = data[0].lon;
+                cityTitle = data[0].name;
+                displayCity(data, city);
+                getCityWeather(data);
+                getFiveDay(data, city);
+            }
+        })
+        .catch(function(error) {
+            alert('Unable to find the weather');
+        });  
+})
