@@ -137,14 +137,15 @@ var getFiveDay = function (city) {
             console.log('THIS IS 5 DAY', data);
 
             // Day 1
-            var temp1 = data.list[2].main.temp;
-            var wind1 = data.list[2].main.temp;
-            var humidity1 = data.list[2].wind.speed;
-            var icon1 = data.list[2].weather[0].icon
-            var time1 = data.list[2].dt_txt;
+            var temp1 = data.list[3].main.temp;
+            var wind1 = data.list[3].main.temp;
+            var humidity1 = data.list[3].wind.speed;
+            var icon1 = data.list[3].weather[0].icon
+            var time1 = data.list[3].dt_txt;
 
 
             var day1 = document.querySelector('#day-1')
+            day1.innerHTML = '';
             const dayOneDiv = document.createElement('div');
             dayOneDiv.classList.add('card');
             day1.append(dayOneDiv);
@@ -158,14 +159,16 @@ var getFiveDay = function (city) {
             dayOneDiv.append(dayOneDivChild);
 
             // Day 2
-            var temp2 = data.list[10].main.temp;
-            var wind2 = data.list[10].main.temp;
-            var humidity2 = data.list[10].wind.speed;
-            var icon2 = data.list[10].weather[0].icon
-            var time2 = data.list[10].dt_txt;
+            var temp2 = data.list[11].main.temp;
+            var wind2 = data.list[11].main.temp;
+            var humidity2 = data.list[11].wind.speed;
+            var icon2 = data.list[11].weather[0].icon
+            var time2 = data.list[11].dt_txt;
 
 
             var day2 = document.querySelector('#day-2')
+            day2.innerHTML = '';
+
             const dayTwoDiv = document.createElement('div');
             dayTwoDiv.classList.add('card');
             day2.append(dayTwoDiv);
@@ -180,14 +183,16 @@ var getFiveDay = function (city) {
 
 
             // Day 3
-            var temp3 = data.list[18].main.temp;
-            var wind3 = data.list[18].main.temp;
-            var humidity3 = data.list[18].wind.speed;
-            var icon3 = data.list[18].weather[0].icon
-            var time3 = data.list[18].dt_txt;
+            var temp3 = data.list[19].main.temp;
+            var wind3 = data.list[19].main.temp;
+            var humidity3 = data.list[19].wind.speed;
+            var icon3 = data.list[19].weather[0].icon
+            var time3 = data.list[19].dt_txt;
 
 
             var day3 = document.querySelector('#day-3')
+            day3.innerHTML = '';
+
             const dayThreeDiv = document.createElement('div');
             dayThreeDiv.classList.add('card');
             day3.append(dayThreeDiv);
@@ -203,14 +208,16 @@ var getFiveDay = function (city) {
 
 
             // Day 4
-            var temp4 = data.list[26].main.temp;
-            var wind4 = data.list[26].main.temp;
-            var humidity4 = data.list[26].wind.speed;
-            var icon4 = data.list[26].weather[0].icon
-            var time4 = data.list[26].dt_txt;
+            var temp4 = data.list[27].main.temp;
+            var wind4 = data.list[27].main.temp;
+            var humidity4 = data.list[27].wind.speed;
+            var icon4 = data.list[27].weather[0].icon
+            var time4 = data.list[27].dt_txt;
 
 
             var day4 = document.querySelector('#day-4')
+            day4.innerHTML = '';
+
             const dayFourDiv = document.createElement('div');
             dayFourDiv.classList.add('card');
             day4.append(dayFourDiv);
@@ -228,14 +235,16 @@ var getFiveDay = function (city) {
 
 
             // Day 5
-            var temp5 = data.list[34].main.temp;
-            var wind5 = data.list[34].main.temp;
-            var humidity5 = data.list[34].wind.speed;
-            var icon5 = data.list[34].weather[0].icon;
-            var time5 = data.list[34].dt_txt;
+            var temp5 = data.list[35].main.temp;
+            var wind5 = data.list[35].main.temp;
+            var humidity5 = data.list[35].wind.speed;
+            var icon5 = data.list[35].weather[0].icon;
+            var time5 = data.list[35].dt_txt;
 
 
             var day5 = document.querySelector('#day-5')
+            day5.innerHTML = '';
+
             const dayFiveDiv = document.createElement('div');
             dayFiveDiv.classList.add('card');
             day5.append(dayFiveDiv);
