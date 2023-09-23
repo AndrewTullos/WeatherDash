@@ -18,7 +18,7 @@
             </header>
             <div class="container float">
                 <div class="row">
-                    <aside class="col-md-4 d-flex flex-column">
+                    <aside class="col-md-3 d-flex flex-column">
                         <form class="m-4" action="#" id="citySearchForm">
                             <label for="citySearch">Get local weather</label>
                             <input id="city-input" type="text" placeholder="Search a city">
@@ -33,19 +33,19 @@
                         <button class="btn btn-dark m-2">Nashville</button>
                         <button class="btn btn-dark m-2">San Antonio</button>
                     </aside>
-                    <div class="col-md-8 pb-md-5">
-                        <article class="border border-dark rounded m-2">
+                    <div class="col-md-9 pb-md-5 ml-2">
+                        <article id="container" class="border border-dark rounded m-2">
                             <h3 class="m-1 date"><span id="city-selected"></span></h3>
                             <div id="weather-now"></div>
                         </article>
                         <div class="container m-1">
                             <h4 class="p-3">5-Day Forecast</h4>
-                            <div id="fiveDaY" class="row px-3">
-                                <div id="days" class="m-1 col-2 card border border-dark rounded"></div>
-                                <div id="days" class="m-1 col-2 card border border-dark rounded"></div>
-                                <div id="days" class="m-1 col-2 card border border-dark rounded"></div>
-                                <div id="days" class="m-1 col-2 card border border-dark rounded"></div>
-                                <div id="days" class="m-1 col-2 card border border-dark rounded"></div>
+                            <div id="fiveDaY" class="row px-3 container-fluid">
+                                <div id="day-1" class="m-1 col-xl col-lg-12 card border border-dark rounded"></div>
+                                <div id="day-2" class="m-1 col-xl col-lg-12 card border border-dark rounded"></div>
+                                <div id="day-3" class="m-1 col-xl col-lg-12 card border border-dark rounded"></div>
+                                <div id="day-4" class="m-1 col-xl col-lg-12 card border border-dark rounded"></div>
+                                <div id="day-5" class="m-1 col-xl col-lg-12 card border border-dark rounded"></div>
                             </div>
                         </div>
                     </div>
